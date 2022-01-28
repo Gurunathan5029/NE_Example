@@ -11,7 +11,7 @@ node {
         parallel(
           "Start Compose": {
     		/* Start docker-compose with five instances of Chrome */
-    	    cmd_exec('docker-compose up -d --scale chrome=5')
+    	    cmd_exec('docker-compose up')
           },
           "Build Image": {
             /* This builds an image with all Serenity selenium scripts in it */
@@ -25,7 +25,7 @@ node {
 		/* Execute the serenity script. On faliure proceed to next step */
          sh "docker run --rm -e mvn clean verify -Dwebdriver.remote.url -Dwebdriver.remote.driver="chrome""
         }
-    
+
 
     stage('Docker Teardown') {
         parallel(
