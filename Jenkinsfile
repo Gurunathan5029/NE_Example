@@ -25,7 +25,7 @@ node {
 		/* Execute the serenity script. On faliure proceed to next step */
          sh "docker run --rm -e mvn clean verify -Dwebdriver.remote.url -Dwebdriver.remote.driver="chrome""
         }
-    }
+    
 
     stage('Docker Teardown') {
         parallel(
