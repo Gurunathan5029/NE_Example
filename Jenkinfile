@@ -20,10 +20,8 @@ node {
 
 
     stage('Docker Teardown') {
-          "Remove Image": {
             /* Delete the image which got created earlier */
             cmd_exec('docker rmi serenity-with-src -f')
-          }
     }    
 
     stage('Create Report') {
