@@ -1,3 +1,3 @@
 FROM markhobson/maven-chrome
 
-COPY . /src/
+COPY . ./src/
