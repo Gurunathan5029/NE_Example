@@ -17,12 +17,12 @@ node {
 
     stage('Execute') {
 		if (isUnix()) {
-                            sh 'docker run --network="host" --rm -v serenity-with-src mvn clean verify -Dwebdriver.driver=remote -Dwebdriver.remote.url=http://192.168.0.145:4444/wd/hub -Dwebdriver.remote.driver=chrome .'
+                            sh 'docker run -w /src serenity-with-src mvn verify -Dwebdriver.driver=remote -Dwebdriver.remote.url=http://192.168.0.145:4444/wd/hub -Dwebdriver.remote.driver=chrome.'
                         }
              else
                 {
         		/* Execute the serenity script. On faliure proceed to next step */
-                 bat 'docker run --network="host" --rm -v serenity-with-src mvn clean verify -Dwebdriver.driver=remote -Dwebdriver.remote.url=http://192.168.0.145:4444/wd/hub -Dwebdriver.remote.driver=chrome .'
+                 bat 'docker run -w /src serenity-with-src mvn verify -Dwebdriver.driver=remote -Dwebdriver.remote.url=http://192.168.0.145:4444/wd/hub -Dwebdriver.remote.driver=chrome.'
                 }
          }
 

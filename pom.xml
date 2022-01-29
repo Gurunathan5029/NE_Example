@@ -153,6 +153,7 @@
                             <glue>
                                 <package>GoJekGlues</package>
                             </glue>
+                            <featuresDirectory>src/test/resources/features</featuresDirectory>
                             <parallelScheme>FEATURE</parallelScheme>
                             <customVmTemplate>src/test/resources/cucumber-serenity-runner.vm</customVmTemplate>
                         </configuration>
