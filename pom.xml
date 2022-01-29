@@ -153,7 +153,7 @@
                             <glue>
                                 <package>com.ne.glue</package>
                             </glue>
-                            <featuresDirectory>src/test/resources/features</featuresDirectory>
+                            <featuresDirectory>src/test/resources/Features</featuresDirectory>
                             <parallelScheme>FEATURE</parallelScheme>
                             <customVmTemplate>src/test/resources/cucumber-serenity-runner.vm</customVmTemplate>
                         </configuration>
