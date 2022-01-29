@@ -9,8 +9,10 @@ node {
 
     stage('Docker Setup') {
             /* This builds an image with all Serenity selenium scripts in it */
-    		def dockerfile = 'bddSerenity.Dockerfile'
-            app = docker.build("serenity-with-src","-f ${dockerfile} ./")
+    		/* def dockerfile = 'bddSerenity.Dockerfile'
+    		app = docker.build("serenity-with-src","-f ${dockerfile} ./")*/
+    		cmd_exec('docker build -t serenity-with-src -f bddSerenity.Dockerfile ./')
+
     }    
 
     stage('Execute') {
