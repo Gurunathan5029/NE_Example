@@ -19,7 +19,7 @@ public class ExampleSteps {
     @Step
     public void launchExamplesUrl() {
         this.examplePage.open();
-        this.examplePage.getDriver().manage().window().maximize();
+           this.examplePage.getDriver().manage().window().maximize();
     }
 
     @Step
