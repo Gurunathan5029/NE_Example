@@ -22,8 +22,14 @@ node {
     }    
 
     stage('Execute') {
+    if (isUnix()) {
+                    sh 'docker run --network="host" --rm -v serenity-with-src mvn clean verify -Dwebdriver.driver=remote -Dwebdriver.remote.url=http://192.168.0.145:4444/wd/hub -Dwebdriver.remote.driver=chrome .'
+                }
+     else
+        {
 		/* Execute the serenity script. On faliure proceed to next step */
-         bat "docker run --network="host" --rm -v serenity-with-src mvn clean verify -Dwebdriver.remote.url -Dwebdriver.remote.driver="chrome""
+         bat 'docker run --network="host" --rm -v serenity-with-src mvn clean verify -Dwebdriver.driver=remote -Dwebdriver.remote.url=http://192.168.0.145:4444/wd/hub -Dwebdriver.remote.driver=chrome .'
+        }
         }
 
 
@@ -38,13 +44,7 @@ node {
             cmd_exec('docker rmi serenity-with-src -f')
           }
         )
-    }    
-
-    stage('Create Report') {
-        /* Generate Serenity Report */
-        allure includeProperties: false, jdk: '', results: [[path: 'report']]
     }
-
 }
 
 def cmd_exec(command) {
