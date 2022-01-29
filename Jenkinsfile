@@ -23,7 +23,7 @@ node {
 
     stage('Execute') {
 		/* Execute the serenity script. On faliure proceed to next step */
-         sh "docker run --rm -e mvn clean verify -Dwebdriver.remote.url -Dwebdriver.remote.driver="chrome""
+         bat "docker run --network="host" --rm -v serenity-with-src mvn clean verify -Dwebdriver.remote.url -Dwebdriver.remote.driver="chrome""
         }
 
 
