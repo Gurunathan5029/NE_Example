@@ -10,26 +10,26 @@ node {
     stage('Docker Setup') {
             /* This builds an image with all Serenity selenium scripts in it */
     		/* def dockerfile = 'bddSerenity.Dockerfile'
-    		app = docker.build("serenity-with-src","-f ${dockerfile} ./")*/
-    		cmd_exec('docker build -t serenity-with-src -f bddSerenity.Dockerfile ./')
+    		app = docker.build("serenity-with-src-maven","-f ${dockerfile} ./")*/
+    		cmd_exec('docker build -t serenity-with-src-maven -f bddSerenity.Dockerfile ./')
 
     }    
 
     stage('Execute') {
 		if (isUnix()) {
-                            sh 'docker run -w /src serenity-with-src mvn verify -Dwebdriver.driver=remote -Dwebdriver.remote.url=http://192.168.0.145:4444/wd/hub -Dwebdriver.remote.driver=chrome.'
+                            sh 'docker run -w /src serenity-with-src-maven mvn verify -Dwebdriver.driver=remote -Dwebdriver.remote.url=http://192.168.0.145:4444/wd/hub -Dwebdriver.remote.driver=chrome.'
                         }
              else
                 {
         		/* Execute the serenity script. On faliure proceed to next step */
-                 bat 'docker run -w /src serenity-with-src mvn verify -Dwebdriver.driver=remote -Dwebdriver.remote.url=http://192.168.0.145:4444/wd/hub -Dwebdriver.remote.driver=chrome.'
+                 bat 'docker run -w /src serenity-with-src-maven mvn verify -Dwebdriver.driver=remote -Dwebdriver.remote.url=http://192.168.0.145:4444/wd/hub -Dwebdriver.remote.driver=chrome.'
                 }
          }
 
 
     stage('Docker Teardown') {
             /* Delete the image which got created earlier */
-            cmd_exec('docker rmi serenity-with-src -f')
+            cmd_exec('docker rmi serenity-with-src-maven -f')
     }
 
 }
